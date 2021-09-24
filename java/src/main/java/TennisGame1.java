@@ -20,10 +20,12 @@ public class TennisGame1 implements TennisGame {
 
     public String getScore() {
         String score = "";
-        int tempScore=0;
-        if (player1Points == player2Points)
+        if (player1Points ==  player2Points && player1Points >= 3) {
+            score = "Deuce";
+        }
+        else if (player1Points == player2Points && player1Points < 3)
         {
-            score = getTiedScore();
+            score = getPlayerScore(player1Points) + "-All";
         }
         else if (player1Points >=4 || player2Points >=4)
         {
@@ -31,11 +33,6 @@ public class TennisGame1 implements TennisGame {
         }
         else
         {
-//            for (int i=1; i<3; i++)
-//            {
-//                score = getNotTieScore(score, i);
-//            }
-
             String player1Score = getPlayerScore(player1Points);
             String player2Score = getPlayerScore(player2Points);
 
@@ -46,41 +43,13 @@ public class TennisGame1 implements TennisGame {
 
     private String getAdvantageOrWinner() {
         String score;
-        int minusResult = player1Points - player2Points;
-        if (minusResult==1) score ="Advantage player1";
-        else if (minusResult ==-1) score ="Advantage player2";
-        else if (minusResult>=2) score = "Win for player1";
+        int scoreDifference = player1Points - player2Points;
+        if (scoreDifference==1) score ="Advantage player1";
+        else if (scoreDifference ==-1) score ="Advantage player2";
+        else if (scoreDifference>=2) score = "Win for player1";
         else score ="Win for player2";
         return score;
     }
-
-    private String getTiedScore() {
-        String score;
-        switch (player1Points)
-        {
-            case 0:
-                    score = "Love-All";
-                break;
-            case 1:
-                    score = "Fifteen-All";
-                break;
-            case 2:
-                    score = "Thirty-All";
-                break;
-            default:
-                    score = "Deuce";
-                break;
-
-        }
-        return score;
-    }
-
-//    private String getNotTieScore(String score, int i) {
-//        int tempScore;
-//        if (i ==1) tempScore = player1Score;
-//        else { score +="-"; tempScore = player2Score;}
-//        return getPlayerScore(score, tempScore);
-//    }
 
     private String getPlayerScore(int playerScore) {
         String score = "";
