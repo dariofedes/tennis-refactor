@@ -36,8 +36,8 @@ public class TennisGame1 implements TennisGame {
 //                score = getNotTieScore(score, i);
 //            }
 
-            String player1Score = getPlayerScore(score, player1Points);
-            String player2Score = getPlayerScore(score, player2Points);
+            String player1Score = getPlayerScore(player1Points);
+            String player2Score = getPlayerScore(player2Points);
 
             score = player1Score + "-" + player2Score;
         }
@@ -82,20 +82,21 @@ public class TennisGame1 implements TennisGame {
 //        return getPlayerScore(score, tempScore);
 //    }
 
-    private String getPlayerScore(String score, int playerScore) {
+    private String getPlayerScore(int playerScore) {
+        String score = "";
         switch(playerScore)
         {
             case 0:
-                score +="Love";
+                score ="Love";
                 break;
             case 1:
-                score +="Fifteen";
+                score ="Fifteen";
                 break;
             case 2:
-                score +="Thirty";
+                score ="Thirty";
                 break;
             case 3:
-                score +="Forty";
+                score ="Forty";
                 break;
         }
         return score;
