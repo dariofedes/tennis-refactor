@@ -18,12 +18,12 @@ public class TennisGame1 implements TennisGame {
             player2Points += 1;
     }
 
-    public String getScore() {
+    public String getScore() { // these if else statements are also a little ugly refactor into something more clean.
         String score = "";
         if (player1Points ==  player2Points && player1Points >= 3) {
             score = "Deuce";
         }
-        else if (player1Points == player2Points && player1Points < 3)
+        else if (player1Points == player2Points)
         {
             score = getPlayerScore(player1Points) + "-All";
         }
@@ -41,33 +41,20 @@ public class TennisGame1 implements TennisGame {
         return score;
     }
 
-    private String getAdvantageOrWinner() {
-        String score;
+    private String getAdvantageOrWinner() { // this method is doing two things try and split it up
+        String score = "";
         int scoreDifference = player1Points - player2Points;
         if (scoreDifference==1) score ="Advantage player1";
         else if (scoreDifference ==-1) score ="Advantage player2";
         else if (scoreDifference>=2) score = "Win for player1";
         else score ="Win for player2";
+
         return score;
     }
 
     private String getPlayerScore(int playerScore) {
-        String score = "";
-        switch(playerScore)
-        {
-            case 0:
-                score ="Love";
-                break;
-            case 1:
-                score ="Fifteen";
-                break;
-            case 2:
-                score ="Thirty";
-                break;
-            case 3:
-                score ="Forty";
-                break;
-        }
-        return score;
+        return Scores.values()[playerScore].name();
     }
+
+
 }
